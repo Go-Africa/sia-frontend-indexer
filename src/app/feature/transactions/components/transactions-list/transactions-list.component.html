@@ -1,0 +1,75 @@
+<div class="container-fluid p-0 m-0">
+    <div class="d-flex justify-content-between ">
+        <div class="d-flex">
+            <input class="tab" type="date" name="" id="" placeholder="Pick From Date">
+            <input class="tab" type="date" name="" id="" placeholder="Pick To Date" style="margin-left: 10px;">
+            <button class="tab">Apply</button>
+        </div>
+
+        <div class="d-flex justify-content-end ">
+            <select name="" id="">
+                <option value="">All Types</option>
+                <option value="">All Types</option>
+                <option value="">All Types</option>
+                <option value="">All Types</option>
+            </select>
+
+            <select name="" id="">
+                <option value="">All Status</option>
+                <option value="">All Status</option>
+                <option value="">All Status</option>
+                <option value="">All Status</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="item mt-4 p-4">
+
+        <h3 class="h3">Transactions</h3>
+
+        <div class="tableau">
+          <table class="table table-borderless mt-4 tb2">
+            <thead>
+                <tr class="p-3 text-center ">
+                    <th scope="col">Signature</th>
+                    <th scope="col">Block</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let transaction of transactions | paginate : {
+                    itemsPerPage: pageSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index" [routerLink]=[transaction.hash]>
+                    <td>{{transaction.hash | slice :0:16}}...</td>
+                    <td>{{transaction.height}}</td>
+                    <td >{{block.time | date: 'medium'}}</td>
+                    <td >{{block.proposerAddress.operator_address}}</td>
+                </tr>
+
+                <tr *ngIf="loading">
+                    <td colspan="5" class="text-center py-5">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-md-12">
+            <pagination-controls
+            previousLabel="Prev"
+            nextLabel="Next"
+            [responsive]="true"
+            (pageChange)="handlePageChange($event)"
+            ></pagination-controls>
+        </div>
+
+
+    </div>
+
+</div>

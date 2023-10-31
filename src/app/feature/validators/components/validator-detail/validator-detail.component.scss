@@ -1,0 +1,36 @@
+*{
+    background-color:#404959 ;
+}
+
+h2,h3,td{
+    color: #fff;
+}
+
+.item{
+    box-shadow: 1px 2px 3px 3px #5a646e9a;
+    border-radius: 15px;
+    padding: 30px 20px;
+}
+
+i{
+    margin: auto 5px;
+    cursor: pointer;
+}
+
+.mb-4 span{
+    color: #bfd7ed;
+    cursor: pointer;
+}
+
+.mb-4 span:hover{
+    color: #3f80f3;
+}
+
+span{
+    color: #bfd7ed;
+    font-weight: bold;
+}
+
+.value{
+    font-weight: bold;
+}

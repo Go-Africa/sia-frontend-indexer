@@ -1,0 +1,31 @@
+$bgColor_light: #ffff;
+$bgColor_dark: #404959;
+
+$textColor_light: #404959;
+$textColor_dark: #bfd7ed;
+
+$iconColor_light: #bfd7ed;
+$iconColor_dark: white;
+$iconColor_hover: #3f80f3;
+
+$titleColor_light: #404959;
+$titleColor_dark: #ffff;
+
+
+// mixin that enables css variables in light mode
+@mixin lighten() {
+  --bgColor: #{$bgColor_light};
+  --textColor: #{$textColor_light};
+  --titleColor: #{$titleColor_light};
+  --iconColor: #{$iconColor_light};
+  --iconColorHover: #{$iconColor_hover};
+}
+
+// mixin that enables css variables in dark mode
+@mixin darken() {
+    --bgColor: #{$bgColor_dark};
+    --textColor: #{$textColor_dark};
+    --titleColor: #{$titleColor_dark};
+    --iconColor: #{$iconColor_dark};
+    --iconColorHover: #{$iconColor_hover};
+}

@@ -1,0 +1,84 @@
+<div class="container-fluid p-0 m-0">
+    <div class="d-flex justify-content-between ">
+        <div class="d-flex">
+            <input class="tab" type="date" name="" id="" placeholder="Pick From Date">
+            <input class="tab" type="date" name="" id="" placeholder="Pick To Date" style="margin-left: 10px;">
+            <button class="tab">Apply</button>
+        </div>
+
+        <div class="d-flex justify-content-end ">
+            <!-- <select name="" id="">
+                <option value="">All Types</option>
+                <option value="">All Types</option>
+                <option value="">All Types</option>
+                <option value="">All Types</option>
+            </select> -->
+
+            <select name="" id="">
+                <option value="">All Status</option>
+                <option value="">Success</option>
+                <option value="">Failed</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="item mt-4 p-4">
+
+        <h3 class="h3">Blocks</h3>
+
+        <div class="tableau">
+          <table class="table table-borderless mt-4 tb2">
+            <thead>
+                <tr class="p-3 text-center ">
+                    <th scope="col">Block Hash</th>
+                    <th scope="col">Block</th>
+                    <th scope="col" >Timestamp</th>
+                    <th scope="col" >Transactions Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let block of blocks | paginate : {
+                    itemsPerPage: pageSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index
+          " [routerLink]=[block.height]>
+                    <td>{{block.hash | slice :0:16}}...</td>
+                    <td>{{block.height}}</td>
+                    <td >{{block.time | date: 'medium'}}</td>
+                    <td >{{block.transactionNumber}}</td>
+                </tr> 
+
+                <tr *ngIf="loading">
+                    <td colspan="5" class="text-center py-5">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+            <div class="col-md-12">
+                <pagination-controls
+                previousLabel="Prev"
+                nextLabel="Next"
+                [responsive]="true"
+                (pageChange)="handlePageChange($event)"
+                ></pagination-controls>
+            </div>
+
+            <!-- <div class="mt-3">                                          
+                Items per Page:
+                <select (change)="handlePageSizeChange($event)">
+                  <option *ngFor="let size of pageSizes" [ngValue]="size">
+                    {{ size }}
+                  </option>
+                </select>
+            </div> -->
+
+        </div>
+
+    </div>
+</div>

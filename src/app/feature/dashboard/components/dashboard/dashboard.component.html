@@ -1,0 +1,203 @@
+<div class="container-fluid p-0 m-0">
+   <h2 class="h2">Dashboard</h2>
+
+   <div class="block d-flex m-0 p-0 justify-content-between ">
+      <div class="left-part w-60">
+        <div class="lists d-flex item mt-3 justify-content-between ">
+          <div class="list d-flex w-30">
+            <div class="icon-box w-30 d-grid align-content-center justify-content-center ">
+                <i class="bi bi-wallet2" ></i>
+            </div>
+
+            <div class="d-grid w-70 align-content-center pl-3">
+                <h4 class="h4 m-0 ">{{latestPrice.data.quote.USD.market_cap_by_total_supply}} $</h4>
+                <span>Train Value</span>
+            </div>
+          </div>
+
+          <div class="list d-flex w-30">
+            <div class="icon-box w-30 d-grid align-content-center justify-content-center ">
+              <i class="bi bi-arrow-down-up"></i>
+            </div>
+
+            <div class="d-grid w-70 align-content-center pl-3 ">
+                <h4 class="h4 m-0">68.625</h4>
+                <span>All Transactions</span>
+            </div>
+          </div>
+
+          <div class="list d-flex w-30">
+            <div class="icon-box w-30 d-grid align-content-center justify-content-center ">
+              <i class="bi bi-box-fill"></i>
+            </div>
+
+            <div class="d-grid w-70 align-content-center pl-3">
+                <h4 class="h4 m-0">{{blockHeight}}</h4>
+                <span>All Blocks</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="lists d-flex item mt-4 justify-content-between">
+          <div class="list d-flex w-30">
+            <div class="icon-box d-grid w-30 align-content-center justify-content-center ">
+              <i class="bi bi-currency-dollar"></i>
+            </div>
+
+            <div class="d-grid w-70 align-content-center pl-3  ">
+                <h4 class="h4 m-0 ">{{latestPrice.data.quote.USD.price}}</h4>
+                <span>Hash Price</span>
+            </div>
+          </div>
+
+          <div class="list d-flex w-30 ">
+            <div class="icon-box d-grid w-30 align-content-center justify-content-center ">
+              <i class="bi bi-shop"></i>
+            </div>
+
+            <div class="d-grid w-70 align-content-center pl-3 ">
+                <h4 class="h4 m-0">{{latestPrice.data.quote.USD.market_cap_by_total_supply}} $</h4>
+                <span>Hash Market Cap</span>
+            </div>
+          </div>
+
+          <div class="list d-flex w-30">
+            <div class="icon-box d-grid w-30 align-content-center justify-content-center ">
+              <i class="bi bi-bar-chart-line-fill"></i>
+            </div>
+
+            <div class="d-grid w-70 align-content-center pl-3 ">
+                <h4 class="h4 m-0">{{latestPrice.data.quote.USD.percent_change_24h}} $</h4>
+                <span>24hr Volume</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3 item shadow-none">
+
+          <div>
+            <h3 class="h3">25 - Day Hash Price History</h3>
+          </div>
+
+          <div>
+            <apx-chart id="statistics1" [series]="chartOptions.series" [chart]="chartOptions.chart"
+                [dataLabels]="chartOptions.dataLabels" [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis"
+                [fill]="chartOptions.fill" [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip"
+                [xaxis]="chartOptions.xaxis" [grid]="chartOptions.grid">
+            </apx-chart>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="right-part w-35 mt-3 ">
+        <div class="justify-content-center">
+
+          <div class="d-flex right-item mt-3">
+            <div class="icon-box d-grid w-20 align-content-center justify-content-center ">
+              <i class="bi bi-box-fill"></i>
+            </div>
+
+            <div class="d-grid w-70 align-content-center pl-3 justify-content-starter ">
+                <h4 class="h4 m-0">{{blockHeight}}</h4>
+                <span>Block Height</span>
+            </div>
+          </div>
+
+          <div class="right-item mt-4">
+            <div>
+              <h5 class="h5">Market Index</h5>
+            </div>
+
+            <div>
+              <apx-chart id="statistics1" [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                  [dataLabels]="chartOptions1.dataLabels" [plotOptions]="chartOptions1.plotOptions" [yaxis]="chartOptions1.yaxis"
+                  [fill]="chartOptions1.fill" [stroke]="chartOptions1.stroke" [tooltip]="chartOptions1.tooltip"
+                  [xaxis]="chartOptions1.xaxis" [grid]="chartOptions1.grid">
+              </apx-chart>
+            </div>
+          </div>
+
+          <div class="right-item mt-4">
+            <div>
+              <h5 class="h5">Trading Volume</h5>
+            </div>
+
+            <div>
+              <apx-chart id="statistics1" [series]="chartOptions2.series" [chart]="chartOptions2.chart"
+                  [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions" [yaxis]="chartOptions2.yaxis"
+                  [fill]="chartOptions2.fill" [stroke]="chartOptions2.stroke" [tooltip]="chartOptions2.tooltip"
+                  [xaxis]="chartOptions2.xaxis" [grid]="chartOptions2.grid">
+              </apx-chart>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+   </div>
+
+   <div class="block d-flex m-0 p-0 justify-content-between ">
+      <div class="sub-left-part w-48 mt-3">
+        <div class="item mt-3">
+          <div class="d-flex top justify-content-between ">
+            <div class="icon-text d-flex align-items-center">
+              <div>
+                <i class="bi bi-wallet2" ></i>
+              </div>
+              <div class="rank">
+                <h4 class="h4">Top 10 Validators</h4>
+              </div>
+            </div>
+            <div>
+              <span style="cursor: pointer;">View All</span>
+            </div>
+          </div>
+
+          <div class="trans-item p-2" *ngFor="let validator of validators" [routerLink]="['/validators/',validator.operator_address]">
+            <div>
+              <h5 style="color: #fff;">{{validator.moniker}}</h5>
+            </div>
+            <div>
+              <span>Voting Power : {{validator.tokens}}</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="sub-right-part w-48 mt-3">
+        <div class="item mt-2">
+          <div class="d-flex top justify-content-between ">
+            <div class="icon-text d-flex align-items-center">
+              <div>
+                <i class="bi bi-box-fill"></i>
+              </div>
+              <div class="rank">
+                <h4 class="h4">The Latest Transactions</h4>
+              </div>
+            </div>
+            <div>
+              <span>24hrs</span>
+            </div>
+          </div>
+
+          <div class="trans-item p-2" *ngFor="let transaction of transactions" [routerLink]="['/transactions/',transaction.hash]">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <h4 class="h4">TX#</h4>
+              </div>
+              <div>
+                <span>{{transaction.hash| slice :0:16}}...</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+   </div>
+
+</div>

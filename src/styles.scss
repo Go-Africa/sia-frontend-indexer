@@ -1,0 +1,31 @@
+@import url(./assets/fonts/font.scss);
+@import url(./assets/variables.scss);
+@import '../node_modules/angular-notifier/styles.scss';
+
+*, *::before, *::after{
+  box-sizing: border-box !important;
+}
+
+*{
+    font-family: 'outfit',sans-serif;
+    color: var(--textColor) ;
+}
+
+body{
+    font-family: 'outfit',sans-serif;
+  background-color: var(--bgColor) ;
+  color: var(--textColor) ;
+}
+
+// .dark {
+//   @include darken();
+// }
+
+// .light {
+//   @include lighten();
+// }
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
