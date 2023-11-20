@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { shareReplay, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Transaction } from '../models/transaction';
+import { Transaction, TransactionListMODEL } from '../models/transaction';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 })
 export class TransactionService {
 
-  transaction! : Transaction
+  transaction! : TransactionListMODEL
 
     constructor(private _http: HttpClient, private notifier: NotificationService, ) { }
 
@@ -18,7 +18,7 @@ export class TransactionService {
 
   /* get all transactions*/
   getAllTransactions(page: number,limit: number){
-    return this._http.get<Transaction[]>(`${this.url}/rpc/transactions/?page=${page}&limit=${limit}`).pipe(
+    return this._http.get<TransactionListMODEL[]>(`${this.url}/Transaction/get-all-transactions/?page=${page}&limit=${limit}`).pipe(
       shareReplay(1),
       tap({
         next:(response:any) =>{
@@ -53,7 +53,7 @@ export class TransactionService {
 
   /*get a transaction */
   getSpecificTransaction(hash: string): Observable<any> {
-    return this._http.get<any>(`${this.url}/rpc/transaction/${hash}`).pipe(
+    return this._http.get<any>(`${this.url}/Transaction/get-one-transaction/${hash}`).pipe(
       shareReplay(1),
       tap({
         next:(response:any) =>{

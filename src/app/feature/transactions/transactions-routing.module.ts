@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TransactionsListComponent } from './components/transactions-list/transactions-list.component';
-import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
 
 const routes: Routes = [
-  { path:'',component: TransactionsListComponent},
-  { path:':hash',component: TransactionDetailsComponent},
+  { path:':hash', loadChildren: () => import('./components/transaction-details/transaction-details.module').then(m => m.TransactionDetailsModule)},
+  { path:'', loadChildren: () => import('./components/transactions-list/transactions-list.module').then(m => m.TransactionsListModule)},
 ];
 
 @NgModule({

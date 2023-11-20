@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../../services/transaction.service';
 import { ActivatedRoute } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
-import { Transaction } from '../../models/transaction';
+import { Transaction, TransactionOneListMODEL } from '../../models/transaction';
 import { BlockService } from 'src/app/feature/blocks/services/block.service';
 import { Block } from 'src/app/feature/blocks/models/block';
 import { NotificationService } from 'src/app/shared/services/notification.service';
@@ -16,7 +16,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 })
 export class TransactionDetailsComponent implements OnInit {
 
-  transaction! : Transaction
+  transaction! : TransactionOneListMODEL
   block! : Block
   code = true
   events! :any
@@ -40,25 +40,16 @@ export class TransactionDetailsComponent implements OnInit {
     const res : any = await lastValueFrom(this._transactionService.getSpecificTransaction(transactionHash));
     this.transaction = res.data
     console.log("transaction get: ", this.transaction);
-    this.events = this.transaction.events
-    this.amount = (this.transaction.tx.messages[0].amount[0].amount)/1000000000
-    console.log("amount ", this.amount);
-    this.fee = (this.transaction.tx.fee.amount[0].amount)/1000000000
-    console.log("fee: ", this.fee);
+    this.events = this.transaction.height
     console.log("transaction events: ", this.events);
     this.blockInfo()
 
-    if (this.transaction.code == 0){
-      this.code = true
-    }else{
-      this.code = false
-    }
 
   }
 
    /*get block infos*/
    async blockInfo() {
-    const blk : any= await lastValueFrom(this._blockService.getSpecificBlock(this.transaction.height));
+    const blk : any= await lastValueFrom(this._blockService.getSpecificBlock(this.transaction.height.toString()));
     this.block = blk.data
     console.log("block get: ",this.block)
   }

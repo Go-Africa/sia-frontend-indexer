@@ -6,6 +6,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AsidebarComponent } from './components/asidebar/asidebar.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -21,11 +22,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
   ],
   exports: [
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
+
   ]
 })
 export class SharedModule { }

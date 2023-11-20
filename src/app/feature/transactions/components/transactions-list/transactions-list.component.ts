@@ -1,41 +1,41 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TransactionService } from '../../services/transaction.service';
-import { Transaction } from '../../models/transaction';
+import { Transaction, TransactionListMODEL, TransactionOneListMODEL } from '../../models/transaction';
 import { Observable, Subject, interval, lastValueFrom, takeUntil } from 'rxjs';
 import { BlockService } from 'src/app/feature/blocks/services/block.service';
-import { Block } from 'src/app/feature/blocks/models/block';
+import { Block, BlockOneListMODEL } from 'src/app/feature/blocks/models/block';
 
 @Component({
   selector: 'app-transactions-list',
   templateUrl: './transactions-list.component.html',
   styleUrls: ['./transactions-list.component.scss']
 })
-export class TransactionsListComponent implements OnInit,OnDestroy {
-  
-  block!: Block;
-  page = 1;
+export class TransactionsListComponent implements OnInit, OnDestroy {
+
+  block!: BlockOneListMODEL;
+  page = 0;
   count = 0;
-  pageSize = 25;
-  loading! : boolean
+  pageSize = 5;
+  loading!: boolean
   destroy$ = new Subject<void>()
 
-  constructor(private _transactionService : TransactionService ,private _blockService : BlockService) { }
+  constructor(private _transactionService: TransactionService, private _blockService: BlockService) { }
 
-  transactions : Transaction[]=[]
+  transactions!: TransactionOneListMODEL[]
 
   ngOnInit(): void {
-    this.loading = true; 
-    this.init(0,this.pageSize);
+    this.loading = true;
+    this.init(0, this.pageSize);
   }
 
-  init(page:number,limit:number) {
-    interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async ()=>{
-      const res:any = await lastValueFrom(this._transactionService.getAllTransactions(page,limit));
-      this.transactions = res.data
-      this.blockInfo()
-      this.count = res.totalItems
-      this.loading = false;
-      console.log(this.transactions);
+  init(page: number, limit: number) {
+    interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async () => {
+      const res: TransactionListMODEL = await lastValueFrom(this._transactionService.getAllTransactions(page, limit));
+      this.transactions = await res.data
+      await this.blockInfo()
+      this.count = await res.pageCount
+      this.loading = await false;
+      console.log("Mes transactions : ", this.count, this.transactions);
     })
 
   }
@@ -43,18 +43,18 @@ export class TransactionsListComponent implements OnInit,OnDestroy {
   handlePageChange(event: number): void {
     this.page = event;
     console.log(event)
-    this.init(event,this.pageSize);
+    this.init(event, this.pageSize);
   }
 
 
   /*get block infos*/
   async blockInfo() {
-    const blk : any= await lastValueFrom(this._blockService.getSpecificBlock(this.transactions[0].height));
-    this.block = blk.data
-    console.log(this.block)
+    const blk: any = await lastValueFrom(this._blockService.getSpecificBlock(this.transactions[0].height.toString()));
+    this.block = blk
+    console.log("Mon lbock : ", this.block)
   }
 
-  stopSpolling(){
+  stopSpolling() {
     this.destroy$.next()
   }
 

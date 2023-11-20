@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BlockService } from '../../services/block.service';
-import { Block } from '../../models/block';
+import { Block, BlockListGetMODEL, BlockOneListMODEL } from '../../models/block';
 import { Subject, interval, lastValueFrom, takeUntil } from 'rxjs';
 
 
@@ -13,34 +13,34 @@ export class BlocksListComponent implements OnInit, OnDestroy {
 
   constructor(private _blockService : BlockService) {}
 
-  blocks : Block[]=[]
-  page = 1;
+  blocks!: BlockOneListMODEL[]
+  page = 0;
   count = 0;
-  pageSize = 25;
+  pageSize = 5;
   destroy$ = new Subject<void>()
 
   loading! : boolean
 
   ngOnInit(): void {
     this.loading = true;
-    this.init(0,this.pageSize)
+    this.init(this.page,this.pageSize)
   }
 
    init(page:number,limit:number) {
     interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async ()=>{
-      const res:any = await lastValueFrom(this._blockService.getAllBlocks(page,limit));
-      this.blocks = res.data
+      const res:BlockListGetMODEL = await lastValueFrom(this._blockService.getAllBlocks(page,limit));
+      this.blocks = await res.data
       console.log("result",res)
-      this.count = res.totalItems
+      this.count = await res.pageCount
       this.loading = false;
-      console.log(this.blocks);
+      console.log("Mes blocks ", this.count ,this.blocks);
     })
     
   } 
 
   handlePageChange(event: number): void {
     this.page = event;
-    console.log(event)
+    console.log('Mon vent  : ', event)
     this.init(event,this.pageSize);
   }
 

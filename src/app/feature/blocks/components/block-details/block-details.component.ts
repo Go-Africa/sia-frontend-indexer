@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
-import { Block } from '../../models/block';
+import { Block, BlockOneListMODEL } from '../../models/block';
 import { BlockService } from '../../services/block.service';
 import { Transaction } from 'src/app/feature/transactions/models/transaction';
 import { Clipboard } from '@angular/cdk/clipboard';
@@ -15,8 +15,8 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 })
 export class BlockDetailsComponent implements OnInit {
 
-  block! : Block
-  transactions! : Transaction[]
+  block! : BlockOneListMODEL
+  transactions! : string[]
   page = 1;
   count = 0;
   pageSize = 25;
@@ -32,16 +32,16 @@ export class BlockDetailsComponent implements OnInit {
   }
 
   async init(page:number,limit:number) {
-    const blockHeight = this._route.snapshot.params['height'];
+    const blockHeight = await this._route.snapshot.params['height'];
     console.log("blockHeight: " + blockHeight);
-    const res : any = await lastValueFrom(this._blockService.getSpecificBlock(blockHeight));
-    this.block = res.data
+    const res : BlockOneListMODEL = await lastValueFrom(this._blockService.getSpecificBlock(blockHeight));
+    this.block = res
     console.log("block get: ", this.block);
 
-    const trans : any = await lastValueFrom(this._blockService.getTransactionsBlock(blockHeight));
-    this.transactions = trans.data
-    this.count = res.totalItems
-    this.loading = false;
+    // const trans : any = await lastValueFrom(this._blockService.getTransactionsBlock(blockHeight));
+    this.transactions = await res.transactionId
+    this.count = await res.transactionId.length
+    this.loading = await false;
     console.log("Transaction's block get: ", this.transactions);
 
   }

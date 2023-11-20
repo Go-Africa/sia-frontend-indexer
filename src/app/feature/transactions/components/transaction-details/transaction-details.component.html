@@ -14,19 +14,15 @@
 
                 <tr>
                     <td><span>Signature :</span></td>
-                    <td><span class="value" style="color: var(--hoverColor);">{{transaction.hash | slice :0:16}}...<i
-                                class="bi bi-clipboard" (click)="copyText(transaction.hash )" title="copy"></i></span></td>
+                    <td><span class="value" style="color: var(--hoverColor);">{{transaction.id | slice :0:16}}...<i
+                                class="bi bi-clipboard" (click)="copyText(transaction.id )" title="copy"></i></span></td>
                 </tr>
 
                 <tr>
                     <td><span>Block :</span></td>
                     <td><span class="value" style="color: #fff;">{{transaction.height}}</span></td>
                 </tr>
-                
-                <tr>
-                    <td><span>Type :</span></td>
-                    <td><span class="value" style="color: #fff;">{{transaction.type}}</span></td>
-                </tr>
+              
 
                 <tr>
                     <td><span>Status :</span></td>
@@ -38,20 +34,10 @@
                     </span></td>
                 </tr>
 
-                 <tr>
-                    <td><span>Fee :</span></td>
-                    <td><span class="value" style="color: #fff;">{{(transaction.tx.fee.amount[0].amount)/1000000000}}</span></td>
-                </tr>
-
-                <tr>
-                    <td><span>Signer :</span></td>
-                    <td><span class="value" style="color: var(--hoverColor);">{{transaction.messages.attribut.signer | slice :0:16}}...<i
-                        class="bi bi-clipboard" (click)="copyText(block.proposerAddress.operator_address)" title="copy"></i></span></td>
-                </tr>
 
                 <tr>
                     <td><span>Amount :</span></td>
-                    <td><span class="value" style="color: #fff;">{{(transaction.tx.messages.amount[0].amount)* 0.000000001 | number}} hash</span></td>
+                    <td><span class="value" style="color: #fff;">{{(transaction.minerfees[0]) | number}} hash</span></td>
                 </tr> 
 
                 <!-- <tr>
@@ -69,15 +55,8 @@
 
         <table style="width: 100% !important;" class="table table-borderless">
           <tbody>
-            <div class="block" style="width: 100% !important;" *ngFor="let msg of transaction.messages ">
-              <h6>{{msg.type}}</h6>
-                <tr *ngFor="let attribute of msg.attributes">
-                  <td><span>{{attribute.key | titlecase}} :</span></td>
-                  <td><span class="value" style="color: #fff;">{{attribute.value | slice :0:16}}...</span><i
-                    class="bi bi-clipboard" (click)="copyText(attribute.value)" title="copy"></i></td>
-                </tr>
-
-              <hr style="width: 100% !important">
+            <div class="block" style="width: 100% !important;" *ngFor="let msg of transaction.siacoinoutputs ">
+              
             </div>
 
           </tbody>
@@ -86,26 +65,5 @@
         </table>
     </div>
 
-    <h2 class="h2" style="margin-top: 50px;">Events</h2>
 
-    <div class="item mt-3 p-3">
-
-        <table style="width: 100% !important;" class="table table-borderless">
-          <tbody>
-            <div class="block" style="width: 100% !important;" *ngFor="let event of events">
-              <h6>{{event.type}}</h6>
-                <tr *ngFor="let attribute of event.attributes">
-                  <td><span>{{attribute.key | titlecase}} :</span></td>
-                  <td><span class="value" style="color: #fff;">{{attribute.value | slice :0:16}}...</span><i
-                    class="bi bi-clipboard" (click)="copyText(attribute.value)" title="copy"></i></td>
-                </tr>
-
-              <hr style="width: 100% !important">
-            </div>
-
-          </tbody>
-
-
-        </table>
-    </div>
 </div>

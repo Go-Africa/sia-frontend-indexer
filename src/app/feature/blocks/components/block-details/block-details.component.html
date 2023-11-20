@@ -17,12 +17,12 @@
                 </tr>
                 <tr>
                     <td><span>Block Hash :</span></td>
-                    <td><span class="value" style="color: var(--hoverColor);">{{block.hash | slice :0:16}}...<i
-                                class="bi bi-clipboard" (click)="copyText(block.hash)" title="copy"></i></span></td>
+                    <td><span class="value" style="color: var(--hoverColor);">{{block.difficulty| slice :0:16}}...<i
+                                class="bi bi-clipboard" (click)="copyText(block.difficulty)" title="copy"></i></span></td>
                 </tr>
                 <tr>
                     <td><span>Timestamp :</span></td>
-                    <td><span class="value" style="color: #fff;">{{block.time | date: 'medium'}}</span></td>
+                    <td><span class="value" style="color: #fff;">{{block.timestamp | date: 'medium'}}</span></td>
                 </tr>
                 <!-- <tr>
                     <td><span>Validators :</span></td>
@@ -30,8 +30,8 @@
                 </tr> -->
                 <tr>
                     <td><span>Validator Name :</span></td>
-                    <td><span class="value" style="color: var(--hoverColor);">{{block.proposerAddress.moniker}} <i
-                                class="bi bi-clipboard" (click)="copyText(block.proposerAddress.moniker)" title="copy"></i></span></td>
+                    <td><span class="value" style="color: var(--hoverColor);">{{block.minerpayouts[0].unlockhash  | slice :0:16}}...<i
+                                class="bi bi-clipboard" (click)="copyText(block.minerpayouts[0].unlockhash)" title="copy"></i></span></td>
                 </tr>
                 <!-- <tr>
                     <td><span>Reward :</span></td>
@@ -39,7 +39,7 @@
                 </tr> -->
                 <tr>
                     <td><span>Transactions</span></td>
-                    <td><span class="value" style="color: #fff;">{{block.transactionNumber}}</span></td>
+                    <td><span class="value" style="color: #fff;">{{block.height}}</span></td>
                 </tr>
             </tbody>
         </table>
@@ -65,11 +65,11 @@
                     currentPage: page,
                     totalItems: count
                   };
-            let i = index" [routerLink]="['/transactions/',transaction.hash]">
-                    <td>{{transaction.hash | slice :0:16}}...</td>
-                    <td>{{transaction.height}}</td>
-                    <td >{{block.time | date: 'medium'}}</td>
-                    <td >{{block.proposerAddress.operator_address}}</td>
+            let i = index" [routerLink]="['/transactions/',transaction]">
+                    <td>{{transaction | slice :0:16}}...</td>
+                    <td >...{{block.id | slice :15:25}}...</td>
+                    <td >{{block.timestamp | date: 'medium'}}</td>
+                    <td >{{block.minerpayouts[0].unlockhash  | slice :0:10}}...</td>
                 </tr>
 
                 <tr *ngIf="loading">

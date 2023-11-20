@@ -28,48 +28,47 @@
         <h3 class="h3">Blocks</h3>
 
         <div class="tableau">
-          <table class="table table-borderless mt-4 tb2">
-            <thead>
-                <tr class="p-3 text-center ">
-                    <th scope="col">Block Hash</th>
-                    <th scope="col">Block</th>
-                    <th scope="col" >Timestamp</th>
-                    <th scope="col" >Transactions Number</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let block of blocks | paginate : {
+            <table class="table table-borderless mt-4 tb2">
+                <thead>
+                    <tr class="p-3 text-center ">
+                        <th scope="col">Block Height</th>
+                        <th scope="col">Miner payout address</th>
+                        <th scope="col">Timestamp</th>
+                        <th scope="col">Difficulty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let block of blocks | paginate : {
                     itemsPerPage: pageSize,
                     currentPage: page,
                     totalItems: count
                   };
             let i = index
           " [routerLink]=[block.height]>
-                    <td>{{block.hash | slice :0:16}}...</td>
-                    <td>{{block.height}}</td>
-                    <td >{{block.time | date: 'medium'}}</td>
-                    <td >{{block.transactionNumber}}</td>
-                </tr> 
+                        <td class="d-flex align-items-center justify-content-center"> <span> {{block.height}}</span> <span class="bg-secondary ml-5 px-2 py-1 rounded-5" style="margin-left: 15px;">{{block.transactionId.length}} transactions</span></td>
+                        <td>{{block.minerpayouts[0].unlockhash| slice :0:16}}...</td>
+                        <td>{{block.timestamp | date: 'medium'}}</td>
+                        <td>{{block.difficulty}}</td>
+                    </tr>
 
-                <tr *ngIf="loading">
-                    <td colspan="5" class="text-center py-5">
-                        <span class="spinner-border spinner-border-lg align-center"></span>
-                    </td>
-                </tr>
+                    <tr *ngIf="loading">
+                        <td colspan="5" class="text-center py-5">
+                            <span class="spinner-border spinner-border-lg align-center"></span>
+                        </td>
+                    </tr>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
             <div class="col-md-12">
-                <pagination-controls
-                previousLabel="Prev"
-                nextLabel="Next"
-                [responsive]="true"
+                <pagination-controls 
+                previousLabel="Prev" 
+                nextLabel="Next" 
+                [responsive]="true" 
                 class="my-pagination"
-                (pageChange)="handlePageChange($event)"
-                ></pagination-controls>
+                (pageChange)="handlePageChange($event)"></pagination-controls>
             </div>
-            
+
 
             <!-- <div class="mt-3">                                          
                 Items per Page:

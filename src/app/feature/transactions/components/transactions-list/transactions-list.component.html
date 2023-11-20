@@ -43,11 +43,11 @@
                     currentPage: page,
                     totalItems: count
                   };
-            let i = index" [routerLink]=[transaction.hash]>
-                    <td>{{transaction.hash | slice :0:16}}...</td>
+            let i = index" [routerLink]=[transaction.id]>
+                    <td>{{transaction.id | slice :0:16}}...</td>
                     <td>{{transaction.height}}</td>
-                    <td >{{block.time | date: 'medium'}}</td>
-                    <td >{{block.proposerAddress.operator_address}}</td>
+                    <td >{{block.timestamp | date: 'medium'}}</td>
+                    <td >{{block.minerpayouts[0].unlockhash | slice :0:16}}</td>
                 </tr>
 
                 <tr *ngIf="loading">

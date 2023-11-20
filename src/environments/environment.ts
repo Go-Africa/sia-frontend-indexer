@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl :'https://provenance-backend.go-africa.io'
+  apiUrl :'https://sia.backend.go-africa.io'
 };
 
 /*

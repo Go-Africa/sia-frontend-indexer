@@ -4,12 +4,12 @@ import { ValidatorsListComponent } from './components/validators-list/validators
 import { ValidatorDetailComponent } from './components/validator-detail/validator-detail.component';
 
 const routes: Routes = [
-  { path:'',component: ValidatorsListComponent},
-  { path:':address',component: ValidatorDetailComponent},
+  { path:'', loadChildren: () => import('./components/validators-list/validators-list.module').then(m => m.ValidatorsListModule)},
+  { path:':address', loadChildren: () => import('./components/validator-detail/validator-detail.module').then(m => m.ValidatorDetailModule)},
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ValidatorsRoutingModule { }
+export class ValidatorsRoutingModule {}
