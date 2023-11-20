@@ -1,0 +1,201 @@
+*{
+  background-color:var(--coverColor) ;
+}
+
+span{
+    color: var(--hoverColor);
+}
+
+select{
+  outline: none;
+}
+
+form{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown{
+  display: none !important;
+  width: 50% !important;
+
+  z-index: 1000;
+
+}
+
+.dropdown .menu{
+  display: none;
+  position: absolute;
+  width: auto !important;
+  outline: 2px solid var(--hoverColor);
+
+  margin-top: 50px !important;
+  margin-left: 50px !important;
+}
+
+.dropdown .menu button{
+  display: flex;
+  align-items: center;
+  border: none !important;
+  padding: 10px;
+  width: 100% !important;
+}
+
+.dropdown .menu button i{
+  color: #fff;
+  font-size: 1.5em !important;
+  margin: 10px !important;
+}
+
+.dropdown .menu button span{
+  font-size: 1.2em;
+}
+
+.dropdown:hover{
+  .menu{
+    display: flex !important;
+    flex-direction: column;
+  }
+}
+
+.dropdown .menu .item-menu button:hover{
+  i{
+    background-color: var(--hoverColor);
+  };
+  span{
+    background-color: var(--hoverColor);
+    color: #fff;
+  }
+  background-color: var(--hoverColor);
+}
+
+h1{
+
+    width: auto !important;
+    font-size: 3em;
+    font-weight: bold;
+    color: #fff;
+    margin-left: 25px;
+}
+
+.search-zone{
+  background-color: var(--coverColor);
+  border-radius: 13px;
+  border: 1px solid var(--hoverColor);
+  outline: none;
+  align-items: center;
+
+}
+
+input{
+  border: none;
+  color:  var(--textColor);
+}
+
+input:focus{
+  background-color: var(--coverColor);
+  border-radius: 13px;
+  border: 1px solid var(--hoverColor);
+  color:  var(--textColor);
+  outline: none;
+  align-items: center;
+  box-shadow: none !important
+
+}
+
+#search{
+	width: 100%;
+}
+
+.search-zone{
+	width: 70%;
+}
+
+.bi-search{
+    color: var(--coverColor) !important;
+    cursor: pointer;
+}
+
+input{
+    margin-left: 7px;
+}
+
+select{
+    color: #fff;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.w-20{
+    width: 20%;
+}
+
+.w-60{
+    width: 60%;
+}
+
+.checkbox {
+	opacity: 0;
+	position: absolute;
+}
+
+.label {
+	border-radius: 50px;
+    border: 1px solid var(--hoverColor);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px;
+	position: relative;
+	height: 26px;
+	width: 50px;
+	transform: scale(1.5);
+}
+
+.label .ball {
+	background-color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	height: 19px;
+	width: 19px;
+	transform: translateX(0px);
+	transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball {
+	transform: translateX(24px);
+}
+
+
+.bi-sun-fill , .bi-moon-fill {
+	color: var(--hoverColor);
+}
+
+
+
+@media (max-width: 1010px){
+
+  .search{
+    display: none !important;
+  }
+
+  .container-fluid{
+    justify-content: space-between;
+  }
+
+  h1{
+    font-size: 1.5em;
+    margin-left: 0px;
+  }
+
+  .dropdown{
+    display: flex !important;
+  }
+
+}
+
+

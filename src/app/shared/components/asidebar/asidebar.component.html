@@ -1,0 +1,45 @@
+<div class="container-fluid p-0 m-0 d-flex main">
+    <div class="menu">
+        <div class="item-menu">
+            <button  class="nav-link d-flex" routerLink="/dashboard" [routerLinkActive]="['active']" title="Dashboard">
+                <i class="bi bi-grid-1x2-fill"></i> <span class="link-name">Dashboard</span>
+            </button>
+        </div>
+    
+        <div class="item-menu">
+            <button class="nav-link d-flex " routerLink=" " [routerLinkActive]="['active']" title="Wallet">
+                <i class="bi bi-wallet2" ></i> <span class="link-name">Wallet</span>
+            </button>
+        </div>
+    
+        <div class="item-menu">
+             <button class="nav-link d-flex " [routerLinkActive]="['active']" routerLink="/transactions" title="Transactions">
+                <i class="bi bi-arrow-down-up"></i> <span class="link-name">Transactions</span>
+            </button>
+        </div>
+    
+        <div class="item-menu">
+             <button class="nav-link d-flex"  [routerLinkActive]="['active']" routerLink="/blocks" title="Blocks">
+                <i class="bi bi-box-fill"></i> <span class="link-name">Blocks</span>
+            </button>
+        </div>
+    
+        <div class="item-menu">
+             <button class="nav-link d-flex " routerLink=" " [routerLinkActive]="['active']">
+                <i class="bi bi-currency-dollar"></i> <span class="link-name">Currency</span>
+            </button>
+        </div>
+    
+        <div class="item-menu">
+            <button class="nav-link d-flex " routerLink="/validators" [routerLinkActive]="['active']">
+              <i class="bi bi-people-fill"></i> <span class="link-name">Validators</span>
+          </button>
+      </div>
+    
+        <div class="item-menu">
+             <button class="nav-link d-flex " routerLink=" " [routerLinkActive]="['active']">
+                <i class="bi bi-pie-chart-fill"></i> <span class="link-name">Statistics</span>
+            </button>
+        </div>
+    </div>
+</div>

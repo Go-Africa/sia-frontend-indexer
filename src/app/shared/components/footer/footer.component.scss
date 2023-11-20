@@ -1,0 +1,25 @@
+*{
+  background-color:var(--coverColor) ;
+  color: #fff;
+}
+
+.container-fluid{
+  justify-content: space-between;
+}
+
+
+
+.icon{
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.icon i:hover{
+    color: var(--hoverColor);
+}
+
+@media (max-width: 1010px){
+  .elt:nth-child(1){
+    display: none !important;
+  }
+}

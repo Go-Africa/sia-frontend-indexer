@@ -1,0 +1,95 @@
+<div class="container-fluid p-0 m-0">
+
+    <div class="mb-4">
+        <span (click)="back()"> <i class="bi bi-chevron-double-left"></i> Back </span>
+    </div>
+
+    <h2 class="h2">Block Details</h2>
+
+    <div class="item mt-3 p-3">
+
+        <table class="table table-borderless">
+
+            <tbody>
+                <tr>
+                    <td><span>Block :</span></td>
+                    <td><span class="value" style="color: #fff;">{{block.height}}</span></td>
+                </tr>
+                <tr>
+                    <td><span>Block Hash :</span></td>
+                    <td><span class="value" style="color: var(--hoverColor);">{{block.hash | slice :0:16}}...<i
+                                class="bi bi-clipboard" (click)="copyText(block.hash)" title="copy"></i></span></td>
+                </tr>
+                <tr>
+                    <td><span>Timestamp :</span></td>
+                    <td><span class="value" style="color: #fff;">{{block.time | date: 'medium'}}</span></td>
+                </tr>
+                <!-- <tr>
+                    <td><span>Validators :</span></td>
+                    <td><span class="value" style="color: #fff;">62/62</span></td>
+                </tr> -->
+                <tr>
+                    <td><span>Validator Name :</span></td>
+                    <td><span class="value" style="color: var(--hoverColor);">{{block.proposerAddress.moniker}} <i
+                                class="bi bi-clipboard" (click)="copyText(block.proposerAddress.moniker)" title="copy"></i></span></td>
+                </tr>
+                <!-- <tr>
+                    <td><span>Reward :</span></td>
+                    <td><span class="value" style="color: #fff;">0.003392031 hash</span></td>
+                </tr> -->
+                <tr>
+                    <td><span>Transactions</span></td>
+                    <td><span class="value" style="color: #fff;">{{block.transactionNumber}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="item mt-4 p-3" *ngIf="transactions.length > 0">
+
+        <h3 class="h3">Transactions</h3>
+
+        <div class="tableau">
+          <table class="table table-borderless mt-4 tb2">
+            <thead>
+                <tr class="p-3 text-center ">
+                    <th scope="col">Signature</th>
+                    <th scope="col">Block</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let transaction of transactions| paginate : {
+                    itemsPerPage: pageSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index" [routerLink]="['/transactions/',transaction.hash]">
+                    <td>{{transaction.hash | slice :0:16}}...</td>
+                    <td>{{transaction.height}}</td>
+                    <td >{{block.time | date: 'medium'}}</td>
+                    <td >{{block.proposerAddress.operator_address}}</td>
+                </tr>
+
+                <tr *ngIf="loading">
+                    <td colspan="5" class="text-center py-5">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-md-12">
+            <pagination-controls
+            previousLabel="Prev"
+            nextLabel="Next"
+            [responsive]="true"
+            (pageChange)="handlePageChange($event)"
+            ></pagination-controls>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,69 @@
+<div class="container-fluid p-0 m-0">
+
+    <h2 class="h2">Address Details</h2>
+
+    <div class="item mt-3 p-3">
+
+        <table class="table table-borderless">
+
+            <tbody>
+
+                <tr>
+                    <td><span style="color: var(--hoverColor);">Account Number :</span></td>
+                    <td><span class="value" style="color: var(--hoverColor);">{{address.account_number}}</span></td>
+                </tr>
+
+                <tr>
+                    <td><span style="color: var(--hoverColor);">Address :</span></td>
+                    <td><span class="value" style="color: #fff;">{{address.address | slice :0:16}}...<i
+                        class="bi bi-clipboard" (click)="copyText(address.address )" title="copy"></i></span></td>
+                </tr>
+
+                <tr>
+                    <td><span style="color: var(--hoverColor);">Type :</span></td>
+                    <td><span class="value" style="color: #fff;">{{address.type}}</span></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <h6 class="h6" style="margin-top: 15px;color: grey;">Balance ({{address.balance.length}})</h6>
+        <hr class="m-0" style="height: 5px ;background-color: grey;">
+
+        <table class="table table-borderless">
+            <tbody>
+                <div *ngFor="let balance of address.balance let i = index">
+                    <tr class="mt-2">
+                        <td style="color: var(--hoverColor);">Bal-{{i+1}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td rowspan="2"></td>
+                        <td>Denomination :    {{balance.denom}}</td>
+                    </tr>
+
+                    <tr>
+                        
+                        <td>Amount :    {{balance.amount}}</td>
+                    </tr>
+                </div>
+            </tbody>
+        </table>
+
+        <h6 class="h6" style="margin-top: 15px;color: grey;">Transactions ({{address.transactions.count}})</h6>
+        <hr class="m-0" style="height: 5px ;background-color: grey;">
+
+        <table class="table table-borderless">
+            <tbody>
+                <tr class="mt-2" style="color: var(--hoverColor);" *ngFor="let transaction of address.transactions.txs let i = index">
+                    <td style="color: var(--hoverColor);">Tran-{{i+1}}</td>
+                    <td>{{transaction.txhash | slice :0:26}}...<i
+                        class="bi bi-clipboard" (click)="copyText(transaction.txhash)" title="copy"></i></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
