@@ -14,7 +14,7 @@ export class BlocksListComponent implements OnInit, OnDestroy {
   constructor(private _blockService : BlockService) {}
 
   blocks!: BlockOneListMODEL[]
-  page = 0;
+  page = 1;
   count = 0;
   pageSize = 5;
   destroy$ = new Subject<void>()
@@ -29,9 +29,9 @@ export class BlocksListComponent implements OnInit, OnDestroy {
    init(page:number,limit:number) {
     interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async ()=>{
       const res:BlockListGetMODEL = await lastValueFrom(this._blockService.getAllBlocks(page,limit));
-      this.blocks = await res.data
+      this.blocks = await res.docs
       console.log("result",res)
-      this.count = await res.pageCount
+      this.count = await res.totalDocs
       this.loading = false;
       console.log("Mes blocks ", this.count ,this.blocks);
     })

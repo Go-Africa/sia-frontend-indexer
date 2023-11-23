@@ -16,7 +16,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 })
 export class TransactionDetailsComponent implements OnInit {
 
-  transaction! : TransactionOneListMODEL
+  transaction : TransactionOneListMODEL = new TransactionOneListMODEL
   block! : Block
   code = true
   events! :any
@@ -37,8 +37,8 @@ export class TransactionDetailsComponent implements OnInit {
   async init() {
     const transactionHash = this._route.snapshot.params['hash'];
     console.log("transaction Hash: " + transactionHash);
-    const res : any = await lastValueFrom(this._transactionService.getSpecificTransaction(transactionHash));
-    this.transaction = res.data
+    this.transaction  = await lastValueFrom(this._transactionService.getSpecificTransaction(transactionHash));
+    // this.transaction = res.data
     console.log("transaction get: ", this.transaction);
     this.events = this.transaction.height
     console.log("transaction events: ", this.events);

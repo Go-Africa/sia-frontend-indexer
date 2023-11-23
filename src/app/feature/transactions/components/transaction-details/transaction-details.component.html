@@ -14,7 +14,7 @@
 
                 <tr>
                     <td><span>Signature :</span></td>
-                    <td><span class="value" style="color: var(--hoverColor);">{{transaction.id | slice :0:16}}...<i
+                    <td><span class="value" style="color: var(--hoverColor);" *ngIf="transaction.id">{{transaction.id | slice :0:16}}...<i
                                 class="bi bi-clipboard" (click)="copyText(transaction.id )" title="copy"></i></span></td>
                 </tr>
 
@@ -37,7 +37,7 @@
 
                 <tr>
                     <td><span>Amount :</span></td>
-                    <td><span class="value" style="color: #fff;">{{(transaction.minerfees[0]) | number}} hash</span></td>
+                    <td><span class="value" style="color: #fff;">{{(transaction.minerfees[0]) | number}} siacoin</span></td>
                 </tr> 
 
                 <!-- <tr>
@@ -49,14 +49,15 @@
         </table>
     </div>
 
-    <h2 class="h2" style="margin-top: 50px;">Messages</h2>
+    <h2 class="h2" style="margin-top: 50px;">Sorties siacoin</h2>
 
     <div class="item mt-3 p-3">
 
         <table style="width: 100% !important;" class="table table-borderless">
           <tbody>
-            <div class="block" style="width: 100% !important;" *ngFor="let msg of transaction.siacoinoutputs ">
-              
+            <div class="row justify-content-center align-items-center px-5" style="width: 100% !important;" *ngFor="let msg of transaction.siacoinoutputs ">
+                <div class="col"> id:  {{msg.id | slice :0:16}}...</div>
+                <div class="col">Value: {{msg.value | slice :0:16}}...</div>
             </div>
 
           </tbody>

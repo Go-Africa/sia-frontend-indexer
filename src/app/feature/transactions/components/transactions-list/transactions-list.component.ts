@@ -13,7 +13,7 @@ import { Block, BlockOneListMODEL } from 'src/app/feature/blocks/models/block';
 export class TransactionsListComponent implements OnInit, OnDestroy {
 
   block!: BlockOneListMODEL;
-  page = 0;
+  page = 1;
   count = 0;
   pageSize = 5;
   loading!: boolean
@@ -25,15 +25,15 @@ export class TransactionsListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loading = true;
-    this.init(0, this.pageSize);
+    this.init(this.page, this.pageSize);
   }
 
   init(page: number, limit: number) {
     interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async () => {
       const res: TransactionListMODEL = await lastValueFrom(this._transactionService.getAllTransactions(page, limit));
-      this.transactions = await res.data
+      this.transactions = await res.docs
       await this.blockInfo()
-      this.count = await res.pageCount
+      this.count = await res.totalDocs
       this.loading = await false;
       console.log("Mes transactions : ", this.count, this.transactions);
     })

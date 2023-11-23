@@ -34,12 +34,11 @@ export class ProposerAddress {
 
 export interface BlockListGetMODEL {
 
-    data: BlockOneListMODEL[],
-    itemCount: number,
-    offset: number,
-    perPage: number,
-    pageCount: number,
-    currentPage: number,
+    docs: BlockOneListMODEL[],
+    totalDocs: number,
+    limit: number,
+    totalPages: number,
+    page: number,
     pagingCounter: number,
     hasPrevPage: boolean,
     hasNextPage: boolean,

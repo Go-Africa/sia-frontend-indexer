@@ -14,12 +14,11 @@ export class Transaction {
 
 export interface TransactionListMODEL {
 
-    data: TransactionOneListMODEL[],
-    itemCount: number,
-    offset: number,
-    perPage: number,
-    pageCount: number,
-    currentPage: number,
+    docs: TransactionOneListMODEL[],
+    totalDocs: number,
+    limit: number,
+    totalPages: number,
+    page: number,
     pagingCounter: number,
     hasPrevPage: boolean,
     hasNextPage: boolean,
@@ -28,18 +27,18 @@ export interface TransactionListMODEL {
 
 }
 
-export interface TransactionOneListMODEL {
+export class TransactionOneListMODEL {
 
-    _id: string,
-    id: string,
-    siacoinoutputs: SiacoinoutputsMODEL[],
-    siacoinintputs: SiacoinoutputsMODEL[],
-    siafundinputs: string,
-    siafundoutputs: string,
-    height: number,
-    timestamp: Date,
-    minerfees: string[],
-    arbitrarydata: any[]
+    _id!: string;
+    id!: string;
+    siacoinoutputs!: SiacoinoutputsMODEL[];
+    siacoinintputs!: SiacoinoutputsMODEL[];
+    siafundinputs!: string;
+    siafundoutputs!: string;
+    height!: number;
+    timestamp!: Date;
+    minerfees!: string[];
+    arbitrarydata!: any[]
 
 }
 
