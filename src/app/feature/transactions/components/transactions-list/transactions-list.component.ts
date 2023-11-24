@@ -13,9 +13,9 @@ import { Block, BlockOneListMODEL } from 'src/app/feature/blocks/models/block';
 export class TransactionsListComponent implements OnInit, OnDestroy {
 
   block!: BlockOneListMODEL;
-  page = 1;
-  count = 0;
-  pageSize = 5;
+  page: number = 1;
+  count: number = 0;
+  pageSize: number = 10;
   loading!: boolean
   destroy$ = new Subject<void>()
 
@@ -24,25 +24,40 @@ export class TransactionsListComponent implements OnInit, OnDestroy {
   transactions!: TransactionOneListMODEL[]
 
   ngOnInit(): void {
+    console.log("Ma page: ", this.page);
+
+    this.stopSpolling()
     this.loading = true;
     this.init(this.page, this.pageSize);
   }
 
   init(page: number, limit: number) {
-    interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async () => {
-      const res: TransactionListMODEL = await lastValueFrom(this._transactionService.getAllTransactions(page, limit));
-      this.transactions = await res.docs
-      await this.blockInfo()
-      this.count = await res.totalDocs
-      this.loading = await false;
-      console.log("Mes transactions : ", this.count, this.transactions);
-    })
+    // interval(1000).subscribe( async  () => {
+        console.log("Ma page: ", this.page);
+        this.loading = true;
+         this._transactionService.getAllTransactions(page, limit).subscribe(res => {
+          this.transactions = res.docs;
+          this.count = res.totalDocs;
+          this.loading = false;
+        });
+
+
+        // await this.blockInfo()
+        console.log("Mes transactions : ", this.count, this.transactions);
+
+    //   }
+    // )
 
   }
 
   handlePageChange(event: number): void {
+    // this.page = event;
+    // console.log("Change page", event)
+    // this.init(event, this.pageSize);
+
     this.page = event;
-    console.log(event)
+    this.loading = true; // Peut-être réinitialiser loading ici si nécessaire
+    this.transactions = []; // Réinitialiser les transactions
     this.init(event, this.pageSize);
   }
 
@@ -55,7 +70,8 @@ export class TransactionsListComponent implements OnInit, OnDestroy {
   }
 
   stopSpolling() {
-    this.destroy$.next()
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 

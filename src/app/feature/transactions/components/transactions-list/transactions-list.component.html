@@ -46,8 +46,8 @@
             let i = index" [routerLink]=[transaction.id]>
                     <td>{{transaction.id | slice :0:16}}...</td>
                     <td>{{transaction.height}}</td>
-                    <td >{{block.timestamp | date: 'medium'}}</td>
-                    <td >{{block.minerpayouts[0].unlockhash | slice :0:16}}</td>
+                    <td >{{transaction.timestamp | date: 'medium'}}</td>
+                    <td ></td>
                 </tr>
 
                 <tr *ngIf="loading">

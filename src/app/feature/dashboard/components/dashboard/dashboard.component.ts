@@ -7,6 +7,7 @@ import { TransactionService } from 'src/app/feature/transactions/services/transa
 import { ValidatorService } from 'src/app/feature/validators/services/validator.service';
 import { BlockService } from 'src/app/feature/blocks/services/block.service';
 import { Validator } from 'src/app/feature/validators/models/validator';
+import { BlockListGetMODEL, BlockOneListMODEL } from 'src/app/feature/blocks/models/block';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,9 +35,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     //get block height
     interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async () => {
-      const res = await lastValueFrom(this._blockService.getAllBlocksDash(0, 1));
+      const res: BlockListGetMODEL = await lastValueFrom(this._blockService.getAllBlocks(1, 1));
       // console.log("res :", res)
-      this.blockHeight = res.data[0].height
+      this.blockHeight = res.docs[0].height
       // console.log("blockHeight :", this.blockHeight);
     })
 
