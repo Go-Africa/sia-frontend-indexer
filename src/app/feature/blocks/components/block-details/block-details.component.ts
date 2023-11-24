@@ -28,7 +28,7 @@ export class BlockDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true; 
-    this.init(0,this.pageSize);
+    this.init(1,this.pageSize);
   }
 
   async init(page:number,limit:number) {
@@ -37,12 +37,11 @@ export class BlockDetailsComponent implements OnInit {
     const res : BlockOneListMODEL = await lastValueFrom(this._blockService.getSpecificBlock(blockHeight));
     this.block = res
     console.log("block get: ", this.block);
-
     // const trans : any = await lastValueFrom(this._blockService.getTransactionsBlock(blockHeight));
     this.transactions = await res.transactionId
     this.count = await res.transactionId.length
     this.loading = await false;
-    console.log("Transaction's block get: ", this.transactions);
+    console.log("Transaction's block get: ", this.count, this.transactions);
 
   }
 
