@@ -50,6 +50,17 @@ export class BlocksListComponent implements OnInit, OnDestroy {
     this.destroy$.next()
   }
 
+  formatTimestamp(timestamp: number): string {
+    const date = new Date(timestamp * 1000); // Convertir le timestamp en millisecondes
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+    return `Le ${day}-${month}-${year} à ${hours}:${minutes}:${seconds}`;
+  }
+
 
   ngOnDestroy(): void {
     this.stopSpolling()

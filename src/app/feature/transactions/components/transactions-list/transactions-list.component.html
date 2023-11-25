@@ -46,7 +46,7 @@
             let i = index" [routerLink]=[transaction.id]>
                     <td>{{transaction.id | slice :0:16}}...</td>
                     <td>{{transaction.height}}</td>
-                    <td >{{transaction.timestamp | date: 'medium'}}</td>
+                    <td >{{ formatTimestamp(+transaction.timestamp ) }}</td>
                     <td ></td>
                 </tr>
 

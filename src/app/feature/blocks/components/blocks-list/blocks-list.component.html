@@ -47,7 +47,7 @@
           " [routerLink]=[block.height]>
                         <td class="d-flex align-items-center justify-content-center"> <span> {{block.height}}</span> <span class="bg-secondary ml-5 px-2 py-1 rounded-5" style="margin-left: 15px;">{{block.transactionId.length}} transactions</span></td>
                         <td>{{block.minerpayouts[0].unlockhash| slice :0:16}}...</td>
-                        <td>{{block.timestamp | date: 'medium'}}</td>
+                        <td>{{ formatTimestamp(+block.timestamp)}}</td>
                         <td>{{block.difficulty}}</td>
                     </tr>
 

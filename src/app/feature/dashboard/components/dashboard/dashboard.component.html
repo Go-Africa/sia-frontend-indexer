@@ -11,7 +11,7 @@
 
             <div class="d-grid w-70 align-content-center pl-3">
                 <h4 class="h4 m-0 "> ...$</h4>
-                <span>Train Value</span>
+                <span>Network Storage</span>
             </div>
           </div>
 
@@ -33,7 +33,7 @@
 
             <div class="d-grid w-70 align-content-center pl-3">
                 <h4 class="h4 m-0">{{blockHeight}}</h4>
-                <span>All Blocks</span>
+                <span>Network hosts</span>
             </div>
           </div>
 
@@ -47,7 +47,7 @@
 
             <div class="d-grid w-70 align-content-center pl-3  ">
                 <h4 class="h4 m-0 ">...</h4>
-                <span>Hash Price</span>
+                <span>Sia Price</span>
             </div>
           </div>
 
@@ -58,7 +58,7 @@
 
             <div class="d-grid w-70 align-content-center pl-3 ">
                 <h4 class="h4 m-0">... $</h4>
-                <span>Hash Market Cap</span>
+                <span>Sia Market Cap</span>
             </div>
           </div>
 
@@ -77,7 +77,7 @@
         <div class="mt-3 item shadow-none">
 
           <div>
-            <h3 class="h3">25 - Day Hash Price History</h3>
+            <h3 class="h3">25 - Day Sia Price History</h3>
           </div>
 
           <div>
@@ -101,7 +101,7 @@
 
             <div class="d-grid w-70 align-content-center pl-3 justify-content-starter ">
                 <h5 class="h4 m-0">{{blockHeight}}</h5>
-                <span>Block Height</span>
+                <span>Network Hosts</span>
             </div>
           </div>
 
@@ -147,7 +147,7 @@
                 <i class="bi bi-wallet2" ></i>
               </div>
               <div class="rank">
-                <h4 class="h4">Top 10 Validators</h4>
+                <h4 class="h4">Top 10 hosts on the network</h4>
               </div>
             </div>
             <div>
@@ -183,13 +183,13 @@
             </div>
           </div>
 
-          <div class="trans-item p-2" *ngFor="let transaction of transactions" [routerLink]="['/transactions/',transaction.hash]">
+          <div class="trans-item p-2" *ngFor="let transaction of transactions.docs" [routerLink]="['/transactions/',transaction.id]">
             <div class="d-flex align-items-center justify-content-between">
               <div>
                 <h4 class="h4">TX#</h4>
               </div>
               <div>
-                <span>{{transaction.hash| slice :0:16}}...</span>
+                <span>{{transaction.id | slice :0:16}}...</span>
               </div>
             </div>
 
