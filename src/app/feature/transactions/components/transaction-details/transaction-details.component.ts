@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../../services/transaction.service';
 import { ActivatedRoute } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
-import { Transaction, TransactionOneListMODEL } from '../../models/transaction';
+import { TransactionOneListMODEL } from '../../models/transaction';
 import { BlockService } from 'src/app/feature/blocks/services/block.service';
 import { Block } from 'src/app/feature/blocks/models/block';
 import { NotificationService } from 'src/app/shared/services/notification.service';

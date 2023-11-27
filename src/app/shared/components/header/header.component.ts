@@ -5,7 +5,6 @@ import { BlockService } from 'src/app/feature/blocks/services/block.service';
 import { lastValueFrom } from 'rxjs';
 import { TransactionService } from 'src/app/feature/transactions/services/transaction.service';
 import { Router } from '@angular/router';
-import { ValidatorService } from 'src/app/feature/validators/services/validator.service';
 import { AddressService } from 'src/app/feature/adresses/services/address.service';
 
 @Component({
@@ -21,20 +20,19 @@ export class HeaderComponent implements OnInit {
     private notifier: NotificationService,
     private _addressService : AddressService,
     private _blockService : BlockService,
-    private _validatorservice : ValidatorService,
     private _transactionService : TransactionService,
     private _router : Router
     ) { }
 
   searchForm!: FormGroup;
 
-  options =['Address','Block','Transaction','Validator']
+  options =['Block','Transaction']
 
   ngOnInit(): void {
 
     this.searchForm = this._formBuilder.group({
       search : ['', Validators.required],
-      selectedItem : ['Address', Validators.required]
+      selectedItem : ['Block', Validators.required]
     })
   }
 
@@ -48,30 +46,22 @@ export class HeaderComponent implements OnInit {
     console.log('select ', choice)
     console.log('search ', element)
 
-    if (choice == 'Address'){
-      await lastValueFrom(this._addressService.getSpecificAddress(element)).then((data)=>{
-        this._router.navigate(["/addresses/",data.data.address])
-      }
-      
-      ).catch(()=>{
-      this.notifier.onError('Verify if your address is correct and retry !');
-      });
-
-    }else if (choice == 'Block'){
-      const data = await lastValueFrom(this._blockService.getSpecificBlock(element));
-      if (data.statusCode === 200){
-        this._router.navigate(["/blocks/",data.data.height])
+    if (choice == 'Block'){
+      const res = await lastValueFrom(this._blockService.getSpecificBlock(element));
+      if (res.statusCode == 404){
+        console.log(res.message)
+        this.notifier.onError("Error : " + res.message)
+      }else{
+        this._router.navigate(["/blocks/",res.height])
       }
     }else if (choice == 'Transaction'){
-      const data = await lastValueFrom(this._transactionService.getSpecificTransaction(element));
-      if (data.statusCode === 200){
-        this._router.navigate(["/transactions/",data.data.hash])
-      }
-    }else if (choice == 'Validator'){
-      const data = await lastValueFrom(this._validatorservice.getSpecificValidator(element));
-      if (data.statusCode === 200){
-        this._router.navigate(["/validators/",data.data.operator_address])
-      }
+        const response = await lastValueFrom(this._transactionService.getSpecificTransaction(element));
+        if (response.statusCode == 404){
+          console.log(response.message)
+          this.notifier.onError("Error : " + response.message)
+        }else{
+          this._router.navigate(["/transactions/",element])
+        }
     }
   }
 
@@ -81,8 +71,6 @@ export class HeaderComponent implements OnInit {
       this._router.navigate(["/blocks"])
     }else if (elt == 'Transaction'){
       this._router.navigate(["/transactions"])
-    }else if (elt == 'Validator'){
-      this._router.navigate(["/validators"])
     }
   }
 

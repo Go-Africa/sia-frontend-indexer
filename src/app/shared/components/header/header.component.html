@@ -37,7 +37,7 @@
       <div class="d-flex search-zone p-2">
         <form class="form-group" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
             <select name="selectedItem" formControlName="selectedItem" id="" title="Make a search" (change)="eventOnClick($event)" >
-                <option [value]="elt" selected *ngFor="let elt of options" (click)="eventOnClick(elt)" >{{elt}}</option>
+                <option [value]="elt" selected *ngFor="let elt of options;" (click)="eventOnClick(elt)" >{{elt}}</option>
             </select>
   
             <input type="search" name="search" class="form-control" formControlName="search" id="search" placeholder="Enter search value">

@@ -4,7 +4,7 @@ import { BlocksListComponent } from './blocks-list.component';
 
 const routes: Routes = [
   {path: '', component: BlocksListComponent},
-  {path: '**', redirectTo: ''}
+  // {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

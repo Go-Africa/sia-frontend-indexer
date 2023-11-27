@@ -155,12 +155,12 @@
             </div>
           </div>
 
-          <div class="trans-item p-2" *ngFor="let validator of validators" [routerLink]="['/validators/',validator.operator_address]">
+          <div class="trans-item p-2" [routerLink]="['/']">
             <div>
-              <h5 style="color: #fff;">{{validator.moniker}}</h5>
+              <h5 style="color: #fff;"></h5>
             </div>
             <div>
-              <span>Voting Power : {{validator.tokens}}</span>
+              <span>Voting Power :</span>
             </div>
           </div>
 
