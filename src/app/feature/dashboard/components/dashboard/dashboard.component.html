@@ -1,5 +1,5 @@
 <div class="container-fluid p-0 m-0">
-   <h2 class="h2">Dashboard test</h2>
+   <h2 class="h2">Dashboard</h2>
 
    <div class="block d-flex m-0 p-0 justify-content-between ">
       <div class="left-part w-60">
@@ -10,7 +10,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3">
-                <h6 class="h6 m-0 ">{{ dataDashboard.total_storage | number:'3.0-3'}}</h6>
+                <h6 class="h6 m-0 ">{{ dataDashboard.total_storage | million}}TB</h6>
                 <span>Network Storage</span>
             </div>
           </div>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3">
-                <h6 class="h6 m-0">{{dataDashboard.remaining_storage | number | slice :0:5}}...</h6>
+                <h6 class="h6 m-0">{{dataDashboard.remaining_storage | million}}TB</h6>
                 <span>Network hosts</span>
             </div>
           </div>
@@ -46,7 +46,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3  ">
-                <h6 class="h6 m-0 ">{{dataDashboard.price | number:'1.5-5'}}</h6>
+                <h6 class="h6 m-0 ">${{dataDashboard.price | number | slice :0:5 }}</h6>
                 <span>Sia Price</span>
             </div>
           </div>
@@ -57,7 +57,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3 ">
-                <h6 class="h6 m-0">{{dataDashboard.market_cap | number:'1.0-0'}}</h6>
+                <h6 class="h6 m-0">${{dataDashboard.market_cap | number:'1.0-0'}}</h6>
                 <span>Sia Market Cap</span>
             </div>
           </div>
@@ -68,7 +68,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3 ">
-                <h6 class="h6 m-0">{{dataDashboard.percent_change_24h | number}}</h6>
+                <h6 class="h6 m-0">${{dataDashboard.percent_change_24h | number}}</h6>
                 <span>24hr Volume</span>
             </div>
           </div>
