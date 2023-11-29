@@ -1,0 +1,75 @@
+<div class="container-fluid p-0 m-0">
+
+    <div class="mb-4">
+        <span (click)="back()"> <i class="bi bi-chevron-double-left"></i> Back </span>
+    </div>
+
+    <h2 class="h2">Host Details</h2>
+
+    <div class="item mt-3 p-3">
+
+        <table class="table table-borderless">
+
+            <tbody>
+
+                <tr>
+                    <td><span>Public Key :</span></td>
+                    <td><span class="value" style="color: var(--hoverColor);" *ngIf="host.publicKey">{{host.publicKey | slice :0:16}}...<i
+                                class="bi bi-clipboard" (click)="copyText(host.publicKey )" title="copy"></i></span></td>
+                </tr>
+
+                <tr>
+                    <td><span>Total storage :</span></td>
+                    <td><span class="value"  style="color: #fff;">{{host.settings.totalstorage| million }}TB </span></td>
+                </tr>
+
+                <tr>
+                    <td><span>Storage price :</span></td>
+                    <td><span class="value" style="color: #fff;">${{host.settings.storageprice | million}}TB/month</span></td>
+                </tr>
+
+                <tr>
+                    <td><span>Upload price :</span></td>
+                    <td><span class="value" style="color: #fff;">${{host.settings.uploadbandwidthprice | million}}/TB </span></td>
+                </tr> 
+
+                <tr>
+                    <td><span>Max collateral :</span></td>
+                    <td><span class="value" style="color: #fff;">${{host.settings.maxcollateral | million}} </span></td>
+                </tr> 
+
+                <tr>
+                    <td><span>Base RPC price :</span></td>
+                    <td><span class="value" style="color: #fff;">{{host.settings.baserpcprice}}/million</span></td>
+                </tr>
+
+                <tr>
+                    <td><span>Ephemeral account expiry :</span></td>
+                    <td><span class="value" style="color: #fff;">{{host.settings.ephemeralaccountexpiry}} </span></td>
+                </tr> 
+
+                <tr>
+                    <td><span>Max ephemeral accoun... :</span></td>
+                    <td><span class="value" style="color: #fff;">{{host.settings.maxephemeralaccountbalance | million}} SC </span></td>
+                </tr> 
+
+                <tr>
+                    <td><span>Sia mux port :</span></td>
+                    <td><span class="value" style="color: #fff;">{{host.settings.siamuxport}}</span></td>
+                </tr>
+
+                <tr>
+                    <td><span>Remaining storage :</span></td>
+                    <td><span class="value" style="color: #fff;">{{host.settings.remainingstorage | million}}TB </span></td>
+                </tr> 
+
+                <tr>
+                    <td><span>Download price :</span></td>
+                    <td><span class="value" style="color: #fff;">${{host.settings.downloadbandwidthprice | million}}/TB </span></td>
+                </tr> 
+                
+            </tbody>
+        </table>
+    </div>
+
+</div>

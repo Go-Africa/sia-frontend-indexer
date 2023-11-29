@@ -10,7 +10,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3">
-                <h4 class="h4 m-0 "> ...$</h4>
+                <h6 class="h6 m-0 ">{{ dataDashboard.total_storage | number:'3.0-3'}}</h6>
                 <span>Network Storage</span>
             </div>
           </div>
@@ -21,7 +21,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3 ">
-                <h4 class="h4 m-0">...</h4>
+                <h6 class="h6 m-0">{{dataDashboard.total_transaction}}</h6>
                 <span>All Transactions</span>
             </div>
           </div>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3">
-                <h4 class="h4 m-0">{{blockHeight}}</h4>
+                <h6 class="h6 m-0">{{dataDashboard.remaining_storage | number | slice :0:5}}...</h6>
                 <span>Network hosts</span>
             </div>
           </div>
@@ -46,7 +46,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3  ">
-                <h4 class="h4 m-0 ">...</h4>
+                <h6 class="h6 m-0 ">{{dataDashboard.price | number:'1.5-5'}}</h6>
                 <span>Sia Price</span>
             </div>
           </div>
@@ -57,7 +57,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3 ">
-                <h4 class="h4 m-0">... $</h4>
+                <h6 class="h6 m-0">{{dataDashboard.market_cap | number:'1.0-0'}}</h6>
                 <span>Sia Market Cap</span>
             </div>
           </div>
@@ -68,7 +68,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3 ">
-                <h4 class="h4 m-0">... $</h4>
+                <h6 class="h6 m-0">{{dataDashboard.percent_change_24h | number}}</h6>
                 <span>24hr Volume</span>
             </div>
           </div>
@@ -100,14 +100,14 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3 justify-content-starter ">
-                <h5 class="h4 m-0">{{blockHeight}}</h5>
+                <h6 class="h6 m-0">{{blockHeight}}</h6>
                 <span>Network Hosts</span>
             </div>
           </div>
 
           <div class="right-item mt-4">
             <div>
-              <h5 class="h5">Market Index</h5>
+              <h6 class="h6">Market Index</h6>
             </div>
 
             <div>
@@ -121,7 +121,7 @@
 
           <div class="right-item mt-4">
             <div>
-              <h5 class="h5">Trading Volume</h5>
+              <h6 class="h6">Trading Volume</h6>
             </div>
 
             <div>
@@ -147,7 +147,7 @@
                 <i class="bi bi-wallet2" ></i>
               </div>
               <div class="rank">
-                <h4 class="h4">Top 10 hosts on the network</h4>
+                <h6 class="h6">Top 10 hosts on the network</h6>
               </div>
             </div>
             <div>
@@ -157,7 +157,7 @@
 
           <div class="trans-item p-2" [routerLink]="['/']">
             <div>
-              <h5 style="color: #fff;"></h5>
+              <h6 style="color: #fff;"></h6>
             </div>
             <div>
               <span>Voting Power :</span>
@@ -175,7 +175,7 @@
                 <i class="bi bi-box-fill"></i>
               </div>
               <div class="rank">
-                <h4 class="h4">The Latest Transactions</h4>
+                <h6 class="h6">The Latest Transactions</h6>
               </div>
             </div>
             <div>
@@ -186,7 +186,7 @@
           <div class="trans-item p-2" *ngFor="let transaction of transactions.docs" [routerLink]="['/transactions/',transaction.id]">
             <div class="d-flex align-items-center justify-content-between">
               <div>
-                <h4 class="h4">TX#</h4>
+                <h6 class="h6">TX#</h6>
               </div>
               <div>
                 <span>{{transaction.id | slice :0:16}}...</span>

@@ -51,13 +51,8 @@ export class TransactionsListComponent implements OnInit, OnDestroy {
   }
 
   handlePageChange(event: number): void {
-    // this.page = event;
-    // console.log("Change page", event)
-    // this.init(event, this.pageSize);
-
     this.page = event;
     this.loading = true; // Peut-être réinitialiser loading ici si nécessaire
-    this.transactions = []; // Réinitialiser les transactions
     this.init(event, this.pageSize);
   }
 
@@ -82,7 +77,7 @@ export class TransactionsListComponent implements OnInit, OnDestroy {
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
     const seconds = date.getSeconds().toString().padStart(2, '0');
-    return `Le ${day}-${month}-${year} à ${hours}:${minutes}:${seconds}`;
+    return `${day}-${month}-${year} at ${hours}:${minutes}:${seconds}`;
   }
 
 

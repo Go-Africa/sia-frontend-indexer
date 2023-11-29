@@ -7,6 +7,7 @@ const routes: Routes = [
   { path:'transactions',component: ContentLayoutComponent, loadChildren: () => import('./feature/transactions/transactions.module').then(m => m.TransactionsModule)},
   { path:'addresses',component: ContentLayoutComponent, loadChildren: () => import('./feature/adresses/adresses.module').then(m => m.AdressesModule)},
   { path:'blocks',component: ContentLayoutComponent, loadChildren: () => import('./feature/blocks/blocks.module').then(m => m.BlocksModule)},
+  { path:'hosts',component: ContentLayoutComponent, loadChildren: () => import('./feature/host/host.module').then(m => m.HostModule)},
   { path: '**', redirectTo: 'dashboard'},
   { path: '', redirectTo: 'dashboard',pathMatch:'full'},
 ];

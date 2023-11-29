@@ -18,30 +18,30 @@
 
     <div class="item mt-4 p-4">
 
-        <h3 class="h3">Blocks</h3>
+        <h3 class="h3">hosts</h3>
 
         <div class="tableau">
             <table class="table table-borderless mt-4 tb2">
                 <thead>
                     <tr class="p-3 text-center ">
-                        <th scope="col">Block Height</th>
-                        <th scope="col">Miner payout address</th>
-                        <th scope="col">Timestamp</th>
-                        <th scope="col">Difficulty</th>
+                        <th scope="col">Total storage</th>
+                        <th scope="col">Remaining storage</th>
+                        <th scope="col">Storage price</th>
+                        <th scope="col">Download price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let block of blocks | paginate : {
+                    <tr *ngFor="let host of hosts | paginate : {
                     itemsPerPage: pageSize,
                     currentPage: page,
                     totalItems: count
                   };
             let i = index
-          " [routerLink]=[block.height]>
-                        <td class="d-flex align-items-center justify-content-center"> <span> {{block.height}}</span> <span class="bg-secondary ml-5 px-2 py-1 rounded-5" style="margin-left: 15px;">{{block.transactionId.length}} transactions</span></td>
-                        <td>{{block.minerpayouts[0].unlockhash| slice :0:16}}...</td>
-                        <td>{{ formatTimestamp(+block.timestamp)}}</td>
-                        <td>{{block.difficulty}}</td>
+          " [routerLink]=[host.publicKey]>
+                        <td class="d-flex align-items-center justify-content-center"> <span> {{host.settings.totalstorage | million}} TB</span></td>
+                        <td>{{host.settings.remainingstorage | million}} TB</td>
+                        <td>${{ host.settings.storageprice | million}}/TB/month</td>
+                        <td>${{host.settings.downloadbandwidthprice | million}} TB</td>
                     </tr>
 
                     <tr *ngIf="loading">

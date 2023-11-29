@@ -6,6 +6,8 @@ import { Transaction, TransactionListMODEL } from 'src/app/feature/transactions/
 import { TransactionService } from 'src/app/feature/transactions/services/transaction.service';
 import { BlockService } from 'src/app/feature/blocks/services/block.service';
 import { BlockListGetMODEL, BlockOneListMODEL } from 'src/app/feature/blocks/models/block';
+import { DataDashboard } from '../../models/dashboard';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -15,19 +17,22 @@ import { BlockListGetMODEL, BlockOneListMODEL } from 'src/app/feature/blocks/mod
 export class DashboardComponent implements OnInit, OnDestroy {
 
   blockHeight: any;
+  dataDashboard!: DataDashboard
 
   constructor(private _transactionService: TransactionService,
-    private _blockService: BlockService, 
+    private _blockService: BlockService,
     private _dashboardService: DashboardService
   ) { }
 
   latestPrice: any;
   latestPrices: any[] = [];
-  transactions!:  TransactionListMODEL
+  transactions!: TransactionListMODEL
   private destroy$ = new Subject<void>()
 
   async ngOnInit(): Promise<void> {
     this.getLatestTransactions()
+    this.getLatestData()
+
 
     //get block height
     interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async () => {
@@ -41,7 +46,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     console.log(this.latestPrice);
     this.latestPrices = await lastValueFrom(this._dashboardService.getHistoricalPrice());
     console.log(this.latestPrices);
-    
+
   }
 
   stopSpolling() {
@@ -62,6 +67,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.log("Get latest transactions :", this.transactions);
     })
 
+  }
+
+  getLatestData() {
+    interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async () => {
+      const res: DataDashboard = await lastValueFrom(this._dashboardService.getLatestData());
+      this.dataDashboard = res
+      console.log("Get dataDashboard :", this.dataDashboard);
+    })
+    // this.dataDashboard = this._dashboardService.getLatestData()
   }
 
   public chartOptions = chartOptions;

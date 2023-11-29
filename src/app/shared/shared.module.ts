@@ -7,6 +7,7 @@ import { AsidebarComponent } from './components/asidebar/asidebar.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NumberPipe } from './pipes/number.pipe';
 
 
 
@@ -16,6 +17,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HeaderComponent,
     FooterComponent,
     AsidebarComponent,
+    NumberPipe
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    NumberPipe
 
   ]
 })

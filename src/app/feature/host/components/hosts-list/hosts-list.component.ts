@@ -1,19 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BlockService } from '../../services/block.service';
-import { Block, BlockListGetMODEL, BlockOneListMODEL } from '../../models/block';
-import { Subject, interval, lastValueFrom, takeUntil } from 'rxjs';
-
+import { Component, OnInit } from '@angular/core';
+import { HostService } from '../../services/host.service';
+import { Subject } from 'rxjs';
+import { HostOne } from '../../models/host';
 
 @Component({
-  selector: 'app-blocks-list',
-  templateUrl: './blocks-list.component.html',
-  styleUrls: ['./blocks-list.component.scss']
+  selector: 'app-hosts-list',
+  templateUrl: './hosts-list.component.html',
+  styleUrls: ['./hosts-list.component.scss']
 })
-export class BlocksListComponent implements OnInit, OnDestroy {
+export class HostsListComponent implements OnInit {
 
-  constructor(private _blockService : BlockService) {}
+  constructor(private _hostService : HostService) {}
 
-  blocks!: BlockOneListMODEL[]
+  hosts!: HostOne[]
   page = 1;
   count = 0;
   pageSize = 10;
@@ -27,23 +26,21 @@ export class BlocksListComponent implements OnInit, OnDestroy {
   }
 
    init(page:number,limit:number) {
-    // interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async ()=>{
-      this.loading = true;
-      this._blockService.getAllBlocks(page,limit).subscribe(res => {
-        this.blocks =  res.docs
+    this.loading = true;
+    this._hostService.getAllHosts(page,limit).subscribe(res => {
+        this.hosts =  res.docs
         console.log("result",res)
         this.count =  res.totalDocs
         this.loading = false;
       });
       
-      console.log("Mes blocks ", this.count ,this.blocks);
-    // })
+      console.log("Mes blocks ", this.count ,this.hosts);
+    // })6564807cb5a0345942133a14
     
   } 
 
   handlePageChange(event: number): void {
     this.page = event;
-    console.log('Mon vent  : ', event)
     this.init(event,this.pageSize);
   }
 
