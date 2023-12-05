@@ -67,8 +67,8 @@
                   };
             let i = index" [routerLink]="['/transactions/',transaction]">
                     <td>{{transaction | slice :0:16}}...</td>
-                    <td >{{block.id | slice :0:10}}...</td>
-                    <td >{{block.timestamp | date: 'medium'}}</td>
+                    <td >{{block.height}}</td>
+                    <td >{{formatTimestamp(+block.timestamp)}}</td>
                     <td >{{block.minerpayouts[0].unlockhash  | slice :0:10}}...</td>
                 </tr>
 

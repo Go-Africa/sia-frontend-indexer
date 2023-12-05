@@ -32,7 +32,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3">
-                <h6 class="h6 m-0">{{dataDashboard.remaining_storage | million}}TB</h6>
+                <h6 class="h6 m-0">{{dataDashboard.total_hosts}}</h6>
                 <span>Network hosts</span>
             </div>
           </div>
@@ -68,7 +68,7 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3 ">
-                <h6 class="h6 m-0">${{dataDashboard.percent_change_24h | number}}</h6>
+                <h6 class="h6 m-0">${{dataDashboard.volume_24h | number}}</h6>
                 <span>24hr Volume</span>
             </div>
           </div>
@@ -101,7 +101,7 @@
 
             <div class="d-grid w-70 align-content-center pl-3 justify-content-starter ">
                 <h6 class="h6 m-0">{{blockHeight}}</h6>
-                <span>Network Hosts</span>
+                <span>All blocks</span>
             </div>
           </div>
 

@@ -3,6 +3,7 @@ export interface DataDashboard
 {
   _id: string;
   total_transaction: number;
+  total_hosts: number
   total_storage: number;
   remaining_storage: number;
   used_storage: number;
