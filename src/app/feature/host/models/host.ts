@@ -69,7 +69,7 @@ export interface PriceTable {
 interface Settings {
 
     acceptingcontracts: boolean,
-    baserpcprice: string,
+    baserpcprice: number,
     collateral: string,
     contractprice: string,
     downloadbandwidthprice: number,
