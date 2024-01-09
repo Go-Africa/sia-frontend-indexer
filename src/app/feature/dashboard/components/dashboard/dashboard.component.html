@@ -10,8 +10,8 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3">
-                <h6 class="h6 m-0 ">{{ dataDashboard.total_storage | million}}TB</h6>
-                <span>Network Storage</span>
+                <h6 class="h6 m-0 ">{{blockHeight}}</h6>
+                <span>Blochchain Height</span>
             </div>
           </div>
 
@@ -20,10 +20,11 @@
               <i class="bi bi-arrow-down-up"></i>
             </div>
 
-            <div class="d-grid w-70 align-content-center pl-3 ">
-                <h6 class="h6 m-0">{{dataDashboard.total_transaction}}</h6>
-                <span>All Transactions</span>
+            <div class="d-grid w-70 align-content-center pl-3">
+              <h6 class="h6 m-0 ">{{ dataDashboard.total_storage | million}}TB</h6>
+              <span>Network Storage</span>
             </div>
+
           </div>
 
           <div class="list d-flex w-30">
@@ -31,10 +32,13 @@
               <i class="bi bi-box-fill"></i>
             </div>
 
-            <div class="d-grid w-70 align-content-center pl-3">
-                <h6 class="h6 m-0">{{dataDashboard.total_hosts}}</h6>
-                <span>Network hosts</span>
+            <div class="d-grid w-70 align-content-center pl-3 ">
+              <h6 class="h6 m-0">
+                <!--{{dataDashboard.total_transaction}}-->
+                28.3 M</h6>
+              <span>All Transactions</span>
             </div>
+
           </div>
 
         </div>
@@ -45,9 +49,9 @@
               <i class="bi bi-currency-dollar"></i>
             </div>
 
-            <div class="d-grid w-70 align-content-center pl-3  ">
-                <h6 class="h6 m-0 ">${{dataDashboard.price | number | slice :0:5 }}</h6>
-                <span>Sia Price</span>
+            <div class="d-grid w-70 align-content-center pl-3">
+              <h6 class="h6 m-0">{{dataDashboard.total_hosts}}</h6>
+              <span>Network hosts</span>
             </div>
           </div>
 
@@ -56,10 +60,10 @@
               <i class="bi bi-shop"></i>
             </div>
 
-            <div class="d-grid w-70 align-content-center pl-3 ">
-                <h6 class="h6 m-0">${{dataDashboard.market_cap | number:'1.0-0'}}</h6>
-                <span>Sia Market Cap</span>
-            </div>
+            <div class="d-grid w-70 align-content-center pl-3  ">
+              <h6 class="h6 m-0 ">${{dataDashboard.price | number | slice :0:5 }}</h6>
+              <span>Sia Price</span>
+           </div>
           </div>
 
           <div class="list d-flex w-30">
@@ -68,9 +72,14 @@
             </div>
 
             <div class="d-grid w-70 align-content-center pl-3 ">
+              <h6 class="h6 m-0">${{dataDashboard.market_cap | number:'1.0-0'}}</h6>
+              <span>Sia Market Cap</span>
+            </div>
+
+            <!--div class="d-grid w-70 align-content-center pl-3 ">
                 <h6 class="h6 m-0">${{dataDashboard.volume_24h | number}}</h6>
                 <span>24hr Volume</span>
-            </div>
+            </div-->
           </div>
         </div>
 
@@ -138,7 +147,7 @@
       </div>
    </div>
 
-   <div class="block d-flex m-0 p-0 justify-content-between ">
+   <!--div class="block d-flex m-0 p-0 justify-content-between ">
       <div class="sub-left-part w-48 mt-3">
         <div class="item mt-3">
           <div class="d-flex top justify-content-between ">
@@ -198,6 +207,6 @@
         </div>
       </div>
 
-   </div>
+   </div-->
 
 </div>
