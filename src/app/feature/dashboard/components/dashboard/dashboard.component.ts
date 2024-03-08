@@ -1,12 +1,15 @@
+import { Transaction } from 'src/app/feature/transactions/models/transaction';
+import { BlockOneListMODEL } from 'src/app/feature/blocks/models/block';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { chartOptions, chartOptions1, chartOptions2 } from './utils/data-chart';
 import { DashboardService } from '../../services/dashboard.service';
 import { Subject, interval, lastValueFrom, takeUntil } from 'rxjs';
-import { Transaction, TransactionListMODEL } from 'src/app/feature/transactions/models/transaction';
+import { TransactionListMODEL } from 'src/app/feature/transactions/models/transaction';
 import { TransactionService } from 'src/app/feature/transactions/services/transaction.service';
 import { BlockService } from 'src/app/feature/blocks/services/block.service';
-import { BlockListGetMODEL, BlockOneListMODEL } from 'src/app/feature/blocks/models/block';
+import { BlockListGetMODEL } from 'src/app/feature/blocks/models/block';
 import { DataDashboard } from '../../models/dashboard';
+
 
 
 @Component({
@@ -17,7 +20,8 @@ import { DataDashboard } from '../../models/dashboard';
 export class DashboardComponent implements OnInit, OnDestroy {
 
   blockHeight: any;
-  dataDashboard!: DataDashboard
+  dataDashboard!: DataDashboard;
+  trans!: any;
 
   constructor(private _transactionService: TransactionService,
     private _blockService: BlockService,
@@ -26,20 +30,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   latestPrice: any;
   latestPrices: any[] = [];
-  transactions!: TransactionListMODEL
-  private destroy$ = new Subject<void>()
+  transactions!: TransactionListMODEL;
+  private destroy$ = new Subject<void>();
 
   async ngOnInit(): Promise<void> {
-    this.getLatestTransactions()
-    this.getLatestData()
+    this.getLatestTransactions();
+    this.getLatestData();
+
+    console.log('get trans :', this.trans)
 
 
     //get block height
     interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async () => {
       const res: BlockListGetMODEL = await lastValueFrom(this._blockService.getAllBlocks(1, 1));
-      this.blockHeight = res.docs[0].height
+      this.blockHeight = res.docs[0].height;
+      this.trans = '28.3 M';
 
-    })
+    });
 
     // get the latest prices
     this.latestPrice = await lastValueFrom(this._dashboardService.getLatestPrice());
@@ -50,12 +57,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   stopSpolling() {
-    this.destroy$.next()
+    this.destroy$.next();
   }
 
 
   ngOnDestroy(): void {
-    this.stopSpolling()
+    this.stopSpolling();
   }
 
 
@@ -63,18 +70,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
   async getLatestTransactions() {
     interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async () => {
       const res: any = await lastValueFrom(this._transactionService.getAllTransactions(1, 10));
-      this.transactions = res.docs
+      this.transactions = res.docs;
       console.log("Get latest transactions :", this.transactions);
-    })
+    });
 
   }
 
   getLatestData() {
     interval(5000).pipe(takeUntil(this.destroy$)).subscribe(async () => {
       const res: DataDashboard = await lastValueFrom(this._dashboardService.getLatestData());
-      this.dataDashboard = res
+      this.dataDashboard = res;
       console.log("Get dataDashboard :", this.dataDashboard);
-    })
+    });
     // this.dataDashboard = this._dashboardService.getLatestData()
   }
 
@@ -83,3 +90,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public chartOptions2 = chartOptions2;
 
 }
+
+
+
